@@ -1,0 +1,12 @@
+{
+  "eslint.validate": [
+    "javascript",         // for .js files
+    "javascriptreact",    // for .jsx files
+    "typescript",         // for .ts files
+    "typescriptreact"     // for .tsx files
+  ],
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit"
+  },
+  "editor.formatOnSave": true
+}
