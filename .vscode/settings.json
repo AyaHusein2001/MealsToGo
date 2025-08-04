@@ -1,12 +1,8 @@
 {
-  "eslint.validate": [
-    "javascript",         // for .js files
-    "javascriptreact",    // for .jsx files
-    "typescript",         // for .ts files
-    "typescriptreact"     // for .tsx files
-  ],
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.codeActionsOnSave": {
+    "source.fixAll": "explicit",
     "source.fixAll.eslint": "explicit"
-  },
-  "editor.formatOnSave": true
+  }
 }
