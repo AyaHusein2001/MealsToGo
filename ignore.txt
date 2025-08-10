@@ -1,0 +1,7 @@
+npx eas login
+(node:122635) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+Log in to EAS with email or username (exit and run eas login --help to see other login options)
+✔ Email or username … aya_husein
+✔ Password … ayosh1956
+Logged in
