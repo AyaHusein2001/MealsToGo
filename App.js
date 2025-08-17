@@ -11,29 +11,27 @@ import { useFonts as useLato, Lato_400Regular } from '@expo-google-fonts/lato';
 import { RestaurantsContextProvider } from './src/services/restaurants/restaurants.context';
 import { LocationContextProvider } from './src/services/location/location.context';
 import Navigation from './src/infrastructure/navigation';
-
-
-// for the custom fonts , we installed expo google fonts , expo fonts
-// then we installed expo-google-fonts/oswald , lato also
-
+import { FavouritesContextProvider } from './src/services/favourites/favourites.context';
+import { AuthenticationContextProvider } from './src/services/authentication/authentication.context';
 export default function App() {
-  const oswaldLoaded = useOswald({
-    Oswald_400Regular,
-  });
-  const latoLoaded = useLato({
-    Lato_400Regular,
-  });
+  const [oswaldLoaded] = useOswald({ Oswald_400Regular });
+  const [latoLoaded] = useLato({ Lato_400Regular });
+
   if (!oswaldLoaded || !latoLoaded) {
     return <Text>Loading...</Text>;
   }
   return (
     <>
       <ThemeProvider theme={theme}>
-        <LocationContextProvider>
-          <RestaurantsContextProvider>
-            <Navigation />
-          </RestaurantsContextProvider>
-        </LocationContextProvider>
+        <AuthenticationContextProvider>
+          <FavouritesContextProvider>
+            <LocationContextProvider>
+              <RestaurantsContextProvider>
+                <Navigation />
+              </RestaurantsContextProvider>
+            </LocationContextProvider>
+          </FavouritesContextProvider>
+        </AuthenticationContextProvider>
       </ThemeProvider>
       <ExpoStatusBar style="auto" />
     </>

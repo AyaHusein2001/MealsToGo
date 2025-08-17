@@ -13,7 +13,6 @@ export const RestaurantsContextProvider = ({ children }) => {
   const [error, setError] = useState(null);
   const { location } = useContext(LocationContext);
 
-  console.log('🚀 ~ RestaurantsContextProvider ~ location:', location);
   useEffect(() => {
     const retrieveRestaurants = (locationString) => {
       setIsLoading(true);

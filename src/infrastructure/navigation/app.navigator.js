@@ -2,14 +2,13 @@ import { Text } from 'react-native';
 import React from 'react';
 import { Ionicons } from '@expo/vector-icons';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { NavigationContainer } from '@react-navigation/native';
 import { SafeArea } from '../../components/utils/SafeArea';
 import { RestaurantsNavigator } from './restaurants.navigator';
 const Tab = createBottomTabNavigator();
 
 const TAB_ICON = {
   // this object is better than if statements
-  Restaurants: 'restaurant',
+  RestaurantsTab: 'restaurant',
   Map: 'map',
   Settings: 'settings',
 };
@@ -35,11 +34,9 @@ const createScreenOptions = ({ route }) => {
 };
 export const AppNavigator = () => {
   return (
-    <NavigationContainer>
-      <Tab.Navigator screenOptions={createScreenOptions}>
-        <Tab.Screen name="Restaurants" component={RestaurantsNavigator} />
-        <Tab.Screen name="Settings" component={SettingsScreen} />
-      </Tab.Navigator>
-    </NavigationContainer>
+    <Tab.Navigator screenOptions={createScreenOptions}>
+      <Tab.Screen name="RestaurantsTab" component={RestaurantsNavigator} />
+      <Tab.Screen name="Settings" component={SettingsScreen} />
+    </Tab.Navigator>
   );
 };

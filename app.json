@@ -17,11 +17,6 @@
       "bundleIdentifier": "com.anonymous.mealstogo"
     },
     "android": {
-      "config": {
-        "googleMaps": {
-          "apiKey": "AIzaSyATd3tbDJSmnritY_gDWCKpZ9s0IjDaYfY"
-        }
-      },
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"

@@ -15,8 +15,8 @@ import {
   Address,
   Icon,
 } from './RestaurantInfoCard.styles';
+import { Favourite } from '../../../components/favourites/Favourite';
 const RestaurantInfoCard = ({ restaurant = {} }) => {
-  console.log("🚀 ~ RestaurantInfoCard ~ restaurant:", restaurant)
   const {
     name = 'Some Restaurant',
     icon = 'https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/lodging-71.png',
@@ -33,6 +33,7 @@ const RestaurantInfoCard = ({ restaurant = {} }) => {
   return (
     <RestaurantCard elevation={5}>
       <Card.Content>
+        <Favourite restaurant={restaurant} />
         <RestaurantCardCover key={name} source={{ uri: photos[0] }} />
         <Info>
           <Text variant="label">{name}</Text>
@@ -47,17 +48,17 @@ const RestaurantInfoCard = ({ restaurant = {} }) => {
                 />
               ))}
             </Rating>
-             <SectionEnd>
-            {isClosedTemporarily && (
-              <Text variant="error">CLOSED TEMPORARILY</Text>
-            )}
-            <Spacer position="left" size="large">
-              {isOpenNow && <SvgXml xml={open} width={20} height={20} />}
-            </Spacer>
-            <Spacer position="left" size="large">
-              <Icon source={{ uri: icon }} />
-            </Spacer>
-          </SectionEnd>
+            <SectionEnd>
+              {isClosedTemporarily && (
+                <Text variant="error">CLOSED TEMPORARILY</Text>
+              )}
+              <Spacer position="left" size="large">
+                {isOpenNow && <SvgXml xml={open} width={20} height={20} />}
+              </Spacer>
+              <Spacer position="left" size="large">
+                <Icon source={{ uri: icon }} />
+              </Spacer>
+            </SectionEnd>
           </Section>
           <Address>{address}</Address>
         </Info>
