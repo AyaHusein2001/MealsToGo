@@ -5,3 +5,134 @@ Log in to EAS with email or username (exit and run eas login --help to see other
 ✔ Email or username … aya_husein
 ✔ Password … ayosh1956
 Logged in
+
+
+Got it 👍 The issue comes from using the **old global `expo-cli`**, which is deprecated and broken with Node 17+. That’s why you’re seeing errors like:
+
+```
+Cannot find module 'expo/bin/cli.js'
+```
+
+### ✅ What you should do
+
+You need to **stop using `expo publish` with global expo-cli** and migrate to the **new CLI** that’s bundled in the `expo` package.
+
+---
+
+### 1. Uninstall the old global expo-cli
+
+```bash
+npm uninstall -g expo-cli
+```
+
+---
+
+### 2. Use the new local Expo CLI
+
+From your project folder, run commands with `npx` instead of global `expo-cli`:
+
+```bash
+npx expo start
+npx expo prebuild
+```
+
+For publishing, the replacement is **EAS Update**:
+
+```bash
+npx expo install expo-updates
+npx eas update
+```
+
+---
+
+### 3. Configure EAS (first time only)
+
+If you haven’t set up EAS before:
+
+```bash
+npm install -g eas-cli
+eas login
+eas update:configure
+```
+
+---
+
+### 4. Publish an update
+
+Once configured, run:
+
+```bash
+eas update
+```
+
+---
+
+🔑 **Key point**:
+
+* `expo publish` is **deprecated** (last usable version was SDK 49, Feb 2024).
+* The replacement is **`eas update`**.
+* Always run Expo commands via `npx expo` (local CLI bundled in your project).
+
+---
+
+👉 Do you want me to show you the **exact steps to migrate your project’s `expo publish` workflow to `eas update`** for your MealsToGo app?
+
+
+Great question 👌
+
+**EAS** stands for **Expo Application Services**.
+It’s the newer set of cloud + local tools that Expo built to replace the old `expo-cli`.
+
+Think of it like this:
+
+* **Before (old way):**
+  You used `expo publish` and `expo build` (inside `expo-cli`) to publish updates and create builds.
+
+* **Now (new way):**
+  Expo moved those features into **EAS**, which is split into two main parts:
+
+---
+
+### 🔹 1. **EAS Build**
+
+Lets you build **native binaries** (APK, AAB, IPA) for Android and iOS in the cloud without setting up Xcode/Android Studio locally.
+
+```bash
+eas build -p android
+eas build -p ios
+```
+
+---
+
+### 🔹 2. **EAS Update**
+
+Replaces `expo publish`.
+It lets you **send over-the-air (OTA) updates** of your JavaScript and assets to users **without rebuilding** the whole app.
+
+```bash
+eas update
+```
+
+---
+
+### 🔹 3. **EAS Submit**
+
+Helps you submit your built apps directly to the **App Store** or **Google Play**.
+
+```bash
+eas submit -p android
+eas submit -p ios
+```
+
+---
+
+⚡ So basically:
+
+* `expo publish` → **now use `eas update`**
+* `expo build` → **now use `eas build`**
+
+---
+
+👉 In your case with **MealsToGo**, you want to replace `expo publish` with `eas update`.
+
+Would you like me to show you a **step-by-step migration** from `expo publish` to `eas update` for your project (like install, config, and first update)?

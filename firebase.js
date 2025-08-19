@@ -16,17 +16,11 @@ const firebaseConfig = {
   appId: '1:750096988212:web:479c3fa1e626bc19a1b261',
 };
 
-// ✅ Initialize Firebase app safely
 const app = getApps().length === 0 ? initializeApp(firebaseConfig) : getApp();
 
-// ✅ Ensure Auth is initialized with AsyncStorage persistence
-let auth;
-try {
-  auth = getAuth(app);
-} catch (e) {
-  auth = initializeAuth(app, {
-    persistence: getReactNativePersistence(AsyncStorage),
-  });
-}
+// ✅ always initialize with persistence
+const auth = initializeAuth(app, {
+  persistence: getReactNativePersistence(AsyncStorage),
+});
 
 export { app, auth };
