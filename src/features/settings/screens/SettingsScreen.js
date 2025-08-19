@@ -12,7 +12,15 @@ import {
 import { TouchableOpacity } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useFocusEffect } from '@react-navigation/native';
+import { styled } from 'styled-components/native';
 
+const SettingsBackground = styled.ImageBackground.attrs({
+  source: require('../../../../assets/home_bg.jpg'),
+})`
+  position: absolute;
+  width: 100%;
+  height: 100%;
+`;
 export const SettingsScreen = ({ navigation }) => {
   const { onLogout, user } = useContext(AuthenticationContext);
   const [photo, setPhoto] = useState(null);
@@ -28,44 +36,47 @@ export const SettingsScreen = ({ navigation }) => {
     }, [user]),
   );
   return (
-    <SafeArea>
-      <AvatarContainer>
-        <TouchableOpacity onPress={() => navigation.navigate('Camera')}>
-          {!photo ? (
-            <Avatar.Icon
-              size={180}
-              icon="human"
-              backgroundColor={colors.brand.primary}
-            />
-          ) : (
-            <Avatar.Image
-              size={180}
-              source={{ uri: photo }}
-              backgroundColor={colors.brand.primary}
-            />
-          )}
-        </TouchableOpacity>
-        <Spacer position="top" size="large">
-          <Text variant="label">{user.email}</Text>
-        </Spacer>
-      </AvatarContainer>
-      <List.Section>
-        <SettingsItem
-          title="Favourites"
-          description="View your favourites"
-          left={(props) => (
-            <List.Icon {...props} color={colors.ui.error} icon="heart" />
-          )}
-          onPress={() => navigation.navigate('Favourites')}
-        />
-        <SettingsItem
-          title="Logout"
-          left={(props) => (
-            <List.Icon {...props} color={colors.ui.secondary} icon="door" />
-          )}
-          onPress={onLogout}
-        />
-      </List.Section>
-    </SafeArea>
+    <SettingsBackground>
+      <SafeArea>
+        <AvatarContainer>
+          <TouchableOpacity onPress={() => navigation.navigate('Camera')}>
+            {!photo ? (
+              <Avatar.Icon
+                size={180}
+                icon="human"
+                backgroundColor={colors.brand.primary}
+              />
+            ) : (
+              <Avatar.Image
+                size={180}
+                source={{ uri: photo }}
+                backgroundColor={colors.brand.primary}
+              />
+            )}
+          </TouchableOpacity>
+          <Spacer position="top" size="large">
+            <Text variant="label">{user.email}</Text>
+          </Spacer>
+        </AvatarContainer>
+        <List.Section>
+          <SettingsItem
+            title="Favourites"
+            description="View your favourites"
+            left={(props) => (
+              <List.Icon {...props} color={colors.ui.error} icon="heart" />
+            )}
+            onPress={() => navigation.navigate('Favourites')}
+          />
+          <Spacer position="top" size="large" />
+          <SettingsItem
+            title="Logout"
+            left={(props) => (
+              <List.Icon {...props} color={colors.ui.secondary} icon="door" />
+            )}
+            onPress={onLogout}
+          />
+        </List.Section>
+      </SafeArea>
+    </SettingsBackground>
   );
 };

@@ -1,12 +1,12 @@
 import { TouchableOpacity } from 'react-native';
 import React, { useContext } from 'react';
-import { SafeArea } from '../components/settings.styles';
+import { FavouritesSafeArea } from '../components/settings.styles';
 import { RestaurantList } from '../../restaurants/components/restaurants.styles';
 import RestaurantInfoCard from '../../restaurants/components/RestaurantInfoCard';
 import { Spacer } from '../../../components/spacer/Spacer';
 import { FavouritesContext } from '../../../services/favourites/favourites.context';
 import { Text } from '../../../components/typography/Text';
-import styled from 'styled-components';
+import { styled } from 'styled-components/native';
 
 const NoFavouritesArea = styled.SafeAreaView`
   flex: 1;
@@ -17,7 +17,7 @@ export const FavouritesScreen = ({ navigation }) => {
   const { favourites } = useContext(FavouritesContext);
   // favourites=[]
   return (
-    <SafeArea>
+    <FavouritesSafeArea>
       {favourites.length ? (
         <RestaurantList
           data={favourites}
@@ -43,6 +43,6 @@ export const FavouritesScreen = ({ navigation }) => {
           <Text variant="label">No favourites yet</Text>
         </NoFavouritesArea>
       )}
-    </SafeArea>
+    </FavouritesSafeArea>
   );
 };
